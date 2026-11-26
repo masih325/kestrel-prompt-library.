@@ -1,0 +1,17 @@
+ticket_id,date,category,priority,first_response_hrs,resolved,escalated,resolution_note
+KH-T1001,2026-11-16,LATE_OR_MISSING_DELIVERY,P3,6.5,Y,N,Carrier investigation opened; parcel delivered day 7
+KH-T1002,2026-11-16,DAMAGED_IN_TRANSIT,P3,4.0,Y,N,Glass tumbler set broken; replacement sent
+KH-T1003,2026-11-16,CHANGE_OF_MIND_RETURN,P3,9.0,Y,N,Within 30 days; return label issued
+KH-T1004,2026-11-17,LATE_OR_MISSING_DELIVERY,P2,11.0,N,N,Tracking stalled at depot; customer asked how to track parcel
+KH-T1005,2026-11-17,DAMAGED_IN_TRANSIT,P3,3.5,Y,N,Ceramic bowl cracked; refund issued
+KH-T1006,2026-11-17,PRODUCT_SAFETY,P1,1.0,N,Y,Heater cord overheating; escalated to Product Safety Lead
+KH-T1007,2026-11-18,BILLING_PAYMENT,P2,14.0,Y,Y,Double charge; Finance reversed
+KH-T1008,2026-11-18,LATE_OR_MISSING_DELIVERY,P3,8.0,Y,N,Customer asked how to track parcel; link sent
+KH-T1009,2026-11-18,FAULTY_PRODUCT,P3,5.0,Y,N,Lamp switch faulty; replacement sent
+KH-T1010,2026-11-19,DAMAGED_IN_TRANSIT,P3,4.5,Y,N,Glass vase broken; replacement sent
+KH-T1011,2026-11-19,LATE_OR_MISSING_DELIVERY,P3,7.0,Y,N,Customer asked how to track parcel; link sent
+KH-T1012,2026-11-20,CHANGE_OF_MIND_RETURN,P3,10.0,Y,N,Outside 30 days; declined politely
+KH-T1013,2026-11-20,DAMAGED_IN_TRANSIT,P3,3.0,Y,N,Glass carafe broken; refund issued
+KH-T1014,2026-11-21,BILLING_PAYMENT,P2,16.0,N,Y,Promo code not applied; awaiting Finance
+KH-T1015,2026-11-21,LATE_OR_MISSING_DELIVERY,P2,12.0,N,N,Parcel confirmed lost; replacement pending approval
+KH-T1016,2026-11-22,DAMAGED_IN_TRANSIT,P3,5.5,Y,N,Glass vase broken; replacement sent
