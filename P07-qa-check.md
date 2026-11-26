@@ -54,14 +54,31 @@ Return ONLY JSON:
 ```
 
 ### v2 run record
-- Input A: P06 **v1** output (T1 or T4). Input B: P06 **v3** output (same ticket)
-- Output A (verbatim):
+- **Invalid run (recorded honestly):** in an earlier attempt the `<draft>` still held the placeholder text "PASTE DRAFT HERE". The checker returned FAIL (C5 and C7 failed because the "draft" had no safety line or tone). That shows it won't pass an empty draft, but it isn't a valid test, so it was re-run below.
+
+- Tool / model / date: ChatGPT, fresh chat, 26 Nov 2026
+- Input: the P06 **v3** draft for ticket T4 (approved_remedy empty)
+- Output (verbatim):
 ```
-[PASTE]
+{
+"checks": [
+{"id": "C1", "pass": true, "evidence": "No specific remedy is offered. The approved_remedy field is empty."},
+{"id": "C2", "pass": false, "evidence": "We're reviewing your case and will get back to you within 1 business day with an update."},
+{"id": "C3", "pass": true, "evidence": "The draft uses placeholders [NAME] and [AGENT_NAME] and does not request additional personal or payment information."},
+{"id": "C4", "pass": true, "evidence": "The draft contains no statement limiting Australian Consumer Law rights."},
+{"id": "C5", "pass": true, "evidence": "Please stop using the item and unplug it if it is safe to do so."},
+{"id": "C6", "pass": true, "evidence": "The draft contains approximately 75 words, excluding placeholders."},
+{"id": "C7", "pass": true, "evidence": "Uses Australian English spelling, including 'business day', and maintains a professional, empathetic tone."}
+],
+"overall": "FAIL",
+"fixes": ["C2: Remove the specific 1 business day response commitment unless it has been authorised. Replace with: 'We're reviewing your case and will provide an update once we've completed our review.'"]
+}
 ```
-- Output B (verbatim):
-```
-[PASTE]
-```
-- Result: [FILL: A = FAIL on which checks? B = PASS?]
+- **Result:** the checker works as a gate. It quoted evidence for each check and blocked the draft on C2.
+- **Finding 1: a cross-prompt conflict (false positive).** The "within 1 business day" line is *required* by P06's empty-remedy rule, but P07 isn't told about it, so it treats the line as an unapproved promise. Testing the prompts **as a chain** surfaced an inconsistency that testing each prompt alone would have missed.
+- **Finding 2: a missed defect.** The draft apologises twice, breaking P06's "one apology at most" rule. P07 has no check for this, so it passed C7.
+- **v3 changes (proposed and documented):**
+  - C2: "The holding line 'we will reply within 1 business day' is approved standard wording and is not a breach."
+  - Add C8: "No more than one apology."
+  - Pass P06's rules to P07 as a shared `<house_rules>` block, so writer and checker use one source of truth.
 - Remaining limitations: A model checking a model can share its blind spots. P07 reduces errors but does not replace the human reviewer. Team leads should also QA a random sample of AI-passed replies each week to measure the miss rate.

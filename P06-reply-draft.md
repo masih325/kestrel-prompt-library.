@@ -80,10 +80,31 @@ Kind regards,
 ```
 
 ### v3 run record
-- Tickets: T1 (remedy = replacement), T4 (remedy empty), T3 (remedy = "Decline change-of-mind return: outside 30 days per s1; offer store credit is NOT approved")
+- Tool / model / date: ChatGPT, 26 Nov 2026
+- Ticket: T4 (product safety), approved_remedy left **empty**
+- **Method note (honest):** the prompt was pasted in two messages (the role line first, then the constraints), and the run was in the same chat as other tests.
 - Output (verbatim):
 ```
-[PASTE]
+Subject: Your Kettle – Order KH-48877
+
+Hi [NAME],
+
+I'm sorry to hear that your kettle sparked at the base and tripped the power. I understand how frightening this must have been, especially with your son nearby.
+
+Please stop using the item and unplug it if it is safe to do so.
+
+We're reviewing your case and will get back to you within 1 business day with an update.
+
+Thank you for bringing this to our attention, and we're sorry for the concern caused.
+
+Kind regards,
+[AGENT_NAME], Kestrel Home Co.
 ```
-- Result vs answer key: [FILL: ≤120 words? No unapproved promises? T4 includes stop-use line? T3 does not imply ACL rights expire?]
+- **Result vs answer key**
+  - ✅ The first sentence acknowledges the specific issue.
+  - ✅ The mandatory safety line is included word for word.
+  - ✅ The empty-remedy rule was followed ("reviewing… within 1 business day"), and no refund or replacement was promised.
+  - ✅ About 70 words; Australian English.
+  - ❌ **Two apologies** ("I'm sorry to hear…" and "we're sorry for the concern caused"), which breaks "One apology at most".
+- **Proposed v4 fix:** "Use exactly one apology, in the first sentence; do not apologise again in the closing." Add the apology count as a check in P07.
 - Remaining limitations: The model may still produce plausible but wrong statements. Every draft goes through P07 and is read by a human before sending.
